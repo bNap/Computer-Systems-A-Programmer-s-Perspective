@@ -1,0 +1,21 @@
+//CSAPP_2.74
+
+#include<stdio.h>
+#include<limits.h>
+
+//Determine whether subtracting arguments will cause overflow
+int tsub_ovf(int x, int y)
+{
+	int sum = x - y;
+	int caseA = x < 0 && y > 0 && sum > x;
+	int caseB = x > 0 && y < 0 && sum < x;
+	return caseA || caseB;
+}
+
+int main()
+{
+	int result = tsub_ovf(INT_MIN, INT_MAX);
+	printf("%x\n", result);
+	getchar();
+	return 0;
+}
