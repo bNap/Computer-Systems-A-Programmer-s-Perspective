@@ -1,0 +1,23 @@
+//CSAPP_2.61
+
+#include<stdio.h>
+
+int test(int x)
+{
+	int shift_val = (sizeof(int)-1) << 3;
+	int xhigh = x >> shift_val;
+	int xlow = x & 0xFF;
+
+	return ~x	//each bit of x is 1
+		&& x	//each bit of x is 0
+		&& ~xhigh	//Most Significant Byte are all 1: logical right shift will take every bit at the left to 1
+		&& xlow;	//Least Significant Byte are all 0: clear the useless bit
+}
+
+int main()
+{
+	int result = 1 - test(0x0FFFFFFF);
+	printf("%d\n", result);
+	getchar();
+	return 0;
+}
