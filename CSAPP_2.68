@@ -1,0 +1,21 @@
+//CSAPP_2.68
+
+#include<stdio.h>
+
+int lower_bits(int x, int n)
+{
+	int i = 0x1;
+	int shift_val = (sizeof(int) << 3) - 1;
+	if (n % (shift_val + 1) == 0)
+		return ~0x0;
+	i <<= shift_val;
+	return ~(i >>= (shift_val - n % 32));
+}
+
+int main()
+{
+	int result = lower_bits(0, 126);
+	printf("%x\n", result);
+	getchar();
+	return 0;
+}
